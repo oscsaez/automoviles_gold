@@ -6,9 +6,6 @@ class ContactPage extends StatelessWidget {
 
   ContactController controller = Get.put(ContactController());
 
-  String API_KEY = 'RKDnRRYecTZMETbJia7m'; 
-  String styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
