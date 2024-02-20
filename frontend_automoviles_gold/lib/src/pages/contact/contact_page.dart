@@ -1,5 +1,5 @@
-import 'package:automoviles_gold/src/pages/contact/contact_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend_automoviles_gold/src/pages/contact/contact_controller.dart';
 import 'package:get/get.dart';
 
 class ContactPage extends StatelessWidget {
