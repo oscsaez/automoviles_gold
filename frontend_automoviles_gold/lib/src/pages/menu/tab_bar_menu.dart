@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_automoviles_gold/src/pages/contact/contact_page.dart';
 import 'package:frontend_automoviles_gold/src/pages/start/start_page.dart';
-import 'package:frontend_automoviles_gold/src/pages/vehicles/vehicles_page.dart';
+
+import '../vehicles/list/vehicles_page.dart';
 
 class TabBarMenu extends StatelessWidget {
 
@@ -19,8 +20,8 @@ class TabBarMenu extends StatelessWidget {
                 TabBar(
                   labelPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
                   isScrollable: true,
-                  indicatorColor: Color.fromRGBO(239, 184, 16, 1),
-                  labelColor: Color.fromRGBO(239, 184, 16, 1),
+                  indicatorColor: Theme.of(context).colorScheme.secondary,
+                  labelColor: Theme.of(context).colorScheme.secondary,
                   unselectedLabelColor: Colors.grey[500],
                   tabs: <Widget>[
                     Tab(

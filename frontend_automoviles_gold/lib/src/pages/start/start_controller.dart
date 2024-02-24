@@ -18,6 +18,8 @@ class StartController extends GetxController {
     vehicles.addAll(result);
   }
 
+  // TENER EN CUENTA EL TOKEN Y LA URL DE FIREBASE
+  // TODO
   List<String> getSomeImages() {
     List<String> urlImages = [];
     

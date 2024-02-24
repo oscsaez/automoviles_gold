@@ -15,6 +15,8 @@ class ContactPage extends StatelessWidget {
           children: [
             _dataPhone(context),
             _customizedDivider(context),
+            _dataEmail(context),
+            _customizedDivider(context),
             _dataSchedule(context),
             _customizedDivider(context),
             _dataAddress(context)
@@ -29,6 +31,44 @@ class ContactPage extends StatelessWidget {
       color: Colors.grey[600],
       indent: MediaQuery.of(context).size.width * 0.02,
       endIndent: 30,
+    );
+  }
+
+  Widget _dataEmail(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01),
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'Correo electrónico',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black
+                ),
+              ),
+              SizedBox(width: 10),
+              Icon(Icons.phone)
+            ],
+          ),
+          SizedBox(height: 10),
+          TextButton(
+            onPressed: () => controller.copyEmailToClipboard(context),
+            child: Text(
+              controller.email,
+              style: TextStyle(
+                  fontSize: 17
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -91,15 +131,15 @@ class ContactPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10),
-          GestureDetector(
-            onTap: () => controller.copyToClipboard(),
+          TextButton(
+            onPressed: () => controller.copyPhoneToClipboard(context),
             child: Text(
               controller.phone,
               style: TextStyle(
-                fontSize: 17
+                  fontSize: 17
               ),
             ),
-          )
+          ),
         ],
       ),
     );

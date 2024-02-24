@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Colors.black87,
           colorScheme: ColorScheme(
               primary: Colors.black87,
-              secondary: Color(0xFFD700),
+              secondary: Color.fromRGBO(239, 184, 16, 1),
               brightness: Brightness.light,
               onBackground: Colors.white,
               onPrimary: Colors.white,
