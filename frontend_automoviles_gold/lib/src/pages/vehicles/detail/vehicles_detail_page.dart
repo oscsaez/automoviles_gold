@@ -16,27 +16,48 @@ class VehiclesDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          _imageSlideShow(context),
-          Container(
-            margin: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                _nameVehicleText(),
-                _referenceVehicleText(),
-                _customizedDivider(context),
-                _infoVehicleGrid(context),
-                _descriptionVehicleText()
-              ],
-            ),
-          )
+          Column(
+            children: [
+              _imageSlideShow(context),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    _nameVehicleText(),
+                    _referenceVehicleText(),
+                    _customizedDivider(context),
+                    // TODO
+                    /*_infoVehicleGrid(context),
+                  _descriptionVehicleText()*/
+                  ],
+                ),
+              )
+            ],
+          ),
+          _buttonBack(context),
         ],
       ),
     );
   }
+
+  Widget _buttonBack(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20, left: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: Theme.of(context).colorScheme.secondary,
+      ),
+      child: IconButton(
+        color: Colors.grey[900],
+        onPressed: () => Navigator.pop(context),
+        icon: Icon(Icons.arrow_back)
+      ),
+    );
+  }
   
-  Widget _infoVehicleGrid(BuildContext context) {
+  /*Widget _infoVehicleGrid(BuildContext context) {
     return GridView.count(
       crossAxisCount: (MediaQuery.of(context).size.width / 50).floor(),
       padding: EdgeInsets.all(20),
@@ -85,7 +106,7 @@ class VehiclesDetailPage extends StatelessWidget {
         )
       ],
     );
-  }
+  }*/
 
   Widget _referenceVehicleText() {
     return Container(

@@ -40,10 +40,12 @@ class ContactController extends GetxController {
             color: Theme.of(context).colorScheme.secondary,
           ),
           SizedBox(width: 12),
-          Text(
-            text,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary
+          Flexible(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary
+              ),
             ),
           )
         ],

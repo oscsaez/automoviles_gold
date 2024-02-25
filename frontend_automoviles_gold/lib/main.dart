@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend_automoviles_gold/src/pages/contact/contact_page.dart';
 import 'package:frontend_automoviles_gold/src/pages/menu/tab_bar_menu.dart';
 import 'package:get/get.dart';
 
