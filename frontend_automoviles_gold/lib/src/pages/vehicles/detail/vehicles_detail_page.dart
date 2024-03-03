@@ -16,21 +16,21 @@ class VehiclesDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade500,
       body: Stack(
         children: [
-          Column(
+          ListView(
             children: [
               _imageSlideShow(context),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    _nameVehicleText(),
-                    _referenceVehicleText(),
-                    _customizedDivider(context),
-                    // TODO
-                    /*_infoVehicleGrid(context),
-                  _descriptionVehicleText()*/
+                    _nameRefVehicleCard(context),
+                    SizedBox(height: 10),
+                    _descriptionVehicleCard(),
+                    SizedBox(height: 10),
+                    _infoVehicleTableCard(),
                   ],
                 ),
               )
@@ -38,6 +38,149 @@ class VehiclesDetailPage extends StatelessWidget {
           ),
           _buttonBack(context),
         ],
+      ),
+    );
+  }
+
+  Widget _descriptionVehicleCard() {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 20, top: 20),
+            child: Text(
+              "Descripción",
+              style: TextStyle(
+                color: Colors.grey.shade900,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+              ),
+            ),
+          ),
+          _descriptionVehicleText(),
+        ],
+      ),
+    );
+  }
+
+  Widget _nameRefVehicleCard(BuildContext context) {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+      ),
+      child: Column(
+        children: [
+          _nameVehicleText(),
+          _referenceVehicleText()
+        ],
+      ),
+    );
+  }
+
+  Widget _infoVehicleTableCard() {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Container(
+        padding: EdgeInsets.all(20),
+        child: Table(
+          border: TableBorder.symmetric(inside: BorderSide(color: Colors.grey.shade900)),
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: [
+            TableRow(
+              children: [
+                TableCell(
+                  verticalAlignment: TableCellVerticalAlignment.middle,
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Año ${vehicle?.year.toString() ?? ""}"),
+                  )
+                ),
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text("${vehicle?.kilometros.toString() ?? ""} km"),
+                    )
+                ),
+              ]
+            ),
+            TableRow(
+              children: [
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text(vehicle?.size ?? ""),
+                    )
+                ),
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text("${vehicle?.plazas.toString() ?? ""} plazas"),
+                    )
+                ),
+              ]
+            ),
+            TableRow(
+              children: [
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text("${vehicle?.puertas.toString() ?? ""} puertas"),
+                    )
+                ),
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text("${vehicle?.cv.toString() ?? ""} CV"),
+                    )
+                ),
+              ]
+            ),
+            TableRow(
+                children: [
+                  TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text(vehicle?.manejo ?? ""),
+                      )
+                  ),
+                  TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text(vehicle?.combustible ?? ""),
+                      )
+                  ),
+                ]
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _descriptionVehicleText() {
+    return Container(
+      margin: EdgeInsets.only(left: 20, bottom: 20, right: 20, top: 10),
+      child: Text(
+        vehicle?.descripcion ?? "",
+        style: TextStyle(
+          fontSize: 17
+        ),
       ),
     );
   }
@@ -56,61 +199,11 @@ class VehiclesDetailPage extends StatelessWidget {
       ),
     );
   }
-  
-  /*Widget _infoVehicleGrid(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: (MediaQuery.of(context).size.width / 50).floor(),
-      padding: EdgeInsets.all(20),
-      crossAxisSpacing: 20,
-      mainAxisSpacing: 20,
-      children: [
-        Container(
-          child: Column(
-            children: [
-              Icon(Icons.speed_rounded),
-              Text(
-                  "${vehicle?.cv} caballos"
-              )
-            ],
-          ),
-        ),
-        Container(
-          child: Column(
-            children: [
-              Icon(Icons.event_seat_rounded),
-              Text(
-                "${vehicle?.plazas} plazas"
-              )
-            ],
-          ),
-        ),
-        Container(
-          child: Column(
-            children: [
-              Icon(Icons.local_gas_station_rounded),
-              Text(
-                  vehicle?.combustible ?? ""
-              )
-            ],
-          ),
-        ),
-        Container(
-          child: Column(
-            children: [
-              Icon(Icons.energy_savings_leaf),
-              Text(
-                  "${vehicle?.plazas} plazas"
-              )
-            ],
-          ),
-        )
-      ],
-    );
-  }*/
 
   Widget _referenceVehicleText() {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.only(left: 20, bottom: 20, right: 20),
       child: Text(
         vehicle?.referencia ?? "",
         style: TextStyle(
@@ -122,7 +215,8 @@ class VehiclesDetailPage extends StatelessWidget {
   
   Widget _nameVehicleText() {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.only(top: 20, left: 20, bottom: 10, right: 20),
       child: Text(
         "${vehicle?.marca} ${vehicle?.modelo} ${vehicle?.year}",
         style: TextStyle(
@@ -131,14 +225,6 @@ class VehiclesDetailPage extends StatelessWidget {
           color: Colors.black87
         ),
       ),
-    );
-  }
-
-  Widget _customizedDivider(BuildContext context) {
-    return Divider(
-      color: Colors.grey[600],
-      indent: MediaQuery.of(context).size.width * 0.02,
-      endIndent: 30,
     );
   }
 

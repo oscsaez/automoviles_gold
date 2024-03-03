@@ -17,7 +17,9 @@ class VehiclesPage extends StatelessWidget {
   }
 
   Widget _gridVehicles(BuildContext context) {
-    List<Widget> vehicles = vehiclesController.getMockVehicles().map((vehicle) {
+    List<Widget> vehicles = vehiclesController.getMockVehicles()
+        .where((element) => element.vendido == false)
+        .map((vehicle) {
       return GestureDetector(
         onTap: () => vehiclesController.openBottomSheet(context, vehicle),
         child: MouseRegion(
@@ -60,7 +62,7 @@ class VehiclesPage extends StatelessWidget {
                         fontSize: 15
                       ),
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
+                      maxLines: MediaQuery.of(context).size.width > 400 ? 3 : 1,
                     ),
                   )
                 ],
@@ -72,7 +74,9 @@ class VehiclesPage extends StatelessWidget {
     }).toList();
 
     return GridView.count(
-      crossAxisCount: (MediaQuery.of(context).size.width / 350).floor(),
+      crossAxisCount: MediaQuery.of(context).size.width > 400
+          ? (MediaQuery.of(context).size.width / 350).floor()
+          : (MediaQuery.of(context).size.width / 200).floor(),
       padding: EdgeInsets.all(20),
       crossAxisSpacing: 20,
       mainAxisSpacing: 20,
