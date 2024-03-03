@@ -59,6 +59,8 @@ class VehiclesPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
                     ),
                   )
                 ],
@@ -70,7 +72,7 @@ class VehiclesPage extends StatelessWidget {
     }).toList();
 
     return GridView.count(
-      crossAxisCount: (MediaQuery.of(context).size.width / 300).floor(),
+      crossAxisCount: (MediaQuery.of(context).size.width / 350).floor(),
       padding: EdgeInsets.all(20),
       crossAxisSpacing: 20,
       mainAxisSpacing: 20,
